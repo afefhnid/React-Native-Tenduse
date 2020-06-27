@@ -1,66 +1,66 @@
-import React, {Component} from 'react';
+import React, { Component } from "react";
 import {
-    View,
-    Text,
-    ScrollView,
-    ImageBackground,
-    Button,
-    TouchableOpacity,
-    StyleSheet,
-    Linking
-} from 'react-native';
+  View,
+  Text,
+  ScrollView,
+  ImageBackground,
+  Button,
+  TouchableOpacity,
+  StyleSheet,
+  Linking,
+} from "react-native";
 import Title from "../components/Title";
-import {updateFavoris} from "../actions/favoris.actions";
-import {connect} from 'react-redux';
+import { updateFavoris } from "../actions/favoris.actions";
+import { connect } from "react-redux";
 
+class Details extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      data: this.props.navigation.state.params.data,
+      short_description: null,
+      description: null,
+      isFavoris: false,
+    };
+  }
 
-class Details extends Component{
+  componentDidMount() {
+    let { description } = this.state.data;
+    let short_description =
+      description.replace(/(<([^>]+)>)/gi, "").substr(0, 300) + "...";
+    description = description.replace(/(<([^>]+)>)/gi, "");
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            data: this.props.navigation.state.params.data,
-            short_description: null,
-            description: null,
-            isFavoris: false
-        }
+    let isFavoris = false;
+    let { favoris } = this.props;
+    let { data } = this.state;
+
+    favoris.includes(data.id) ? (isFavoris = true) : (isFavoris = false);
+    this.setState({ short_description, description, isFavoris });
+  }
+
+  openDescription() {
+    this.setState({ short_description: this.state.description });
+  }
+
+  goToLink() {
+    let { access_link } = this.state.data;
+    if (Linking.canOpenURL(access_link)) {
+      Linking.openURL(access_link);
     }
+  }
 
-    componentDidMount() {
-        let {description} = this.state.data;
-        let short_description = description.replace(/(<([^>]+)>)/ig, '').substr(0,300) + "...";
-        description = description.replace(/(<([^>]+)>)/ig, '');
+  addOrDeleteFavoris() {
+    let { favoris } = this.props;
+    let { id } = this.state.data;
 
-        let isFavoris = false;
-        let {favoris} = this.props;
-        let {data} = this.state;
+    favoris.includes(id)
+      ? favoris.splice(favoris.indexOf(id), 1)
+      : favoris.push(id);
+    this.props.updateFavoris(favoris);
+    this.setState({ isFavoris: !!favoris.includes(id) });
+  }
 
-        favoris.includes(data.id) ? isFavoris = true : isFavoris = false;
-        this.setState({short_description, description, isFavoris});
-    }
-
-    openDescription(){
-        this.setState({short_description: this.state.description});
-    }
-
-    goToLink(){
-        let {access_link} = this.state.data;
-        if(Linking.canOpenURL(access_link)){
-            Linking.openURL(access_link);
-        }
-    }
-
-
-    addOrDeleteFavoris(){
-        let {favoris} = this.props;
-        let {id} = this.state.data;
-
-        favoris.includes(id) ? favoris.splice(favoris.indexOf(id), 1) : favoris.push(id);
-        this.props.updateFavoris(favoris);
-        this.setState({ isFavoris : !!favoris.includes(id) })
-    }
-
-   /* addFavoris(){
+  /* addFavoris(){
         let {favoris} = this.props;
         let {id} = this.state.data;
 
@@ -79,89 +79,95 @@ class Details extends Component{
         this.props.updateFavoris(favoris);
         this.setState({isFavoris: false});
     }*/
+  home() {
+    let { navigation, data } = this.props;
+    navigation.navigate("Home", { data: data });
+  }
+  render() {
+    let {
+      cover_url,
+      title,
+      description,
+      contact_name,
+      contact_phone,
+    } = this.state.data;
+    let { short_description, isFavoris } = this.state;
 
-    render() {
+    return (
+      <ScrollView style={styles.container}>
+        <ImageBackground
+          style={styles.headerImage}
+          source={{ uri: cover_url }}
+        ></ImageBackground>
 
-        let {cover_url, title, description,
-            contact_name, contact_phone} = this.state.data;
-        let {short_description, isFavoris} = this.state;
+        <View style={styles.body} onPress={() => this.details()}>
+          <Title title={title} />
 
+          <View>{/*Badges de catégories*/}</View>
 
-        return (
-            <ScrollView style={styles.container}>
+          {/*Box icon*/}
 
-                <ImageBackground style={styles.headerImage} source={{uri: cover_url}}></ImageBackground>
+          <View>{/*Info du calendrier*/}</View>
 
-                <View style={styles.body}>
-                    <Title title={title}/>
+          <Text>A propos</Text>
+          <Text onPress={() => this.openDescription()}>
+            {short_description}
+          </Text>
 
-                    <View>
-                        {/*Badges de catégories*/}
-                    </View>
+          <Text>Organisateur</Text>
+          <Text>{contact_name}</Text>
+          <Text>{contact_phone}</Text>
 
-                    {/*Box icon*/}
+          {/*Event similaires*/}
 
-                    <View>
-                        {/*Info du calendrier*/}
-                    </View>
+          <Button
+            title={isFavoris ? "Supprimer des favoris" : "Ajouter aux favoris"}
+            onPress={() => this.addOrDeleteFavoris()}
+          />
 
-                    <Text>A propos</Text>
-                    <Text onPress={() => this.openDescription()}>{short_description}</Text>
+          {isFavoris ? (
+            <Button
+              title={"Supprimer des favoris"}
+              onPress={() => this.deleteFavoris()}
+            />
+          ) : (
+            <Button
+              title={"Ajouter aux favoris"}
+              onPress={() => this.addFavoris()}
+            />
+          )}
 
-                    <Text>Organisateur</Text>
-                    <Text>{contact_name}</Text>
-                    <Text>{contact_phone}</Text>
-
-
-                    {/*Event similaires*/}
-
-
-                    <Button title={isFavoris ? "Supprimer des favoris" : "Ajouter aux favoris"} onPress={() => this.addOrDeleteFavoris()}/>
-
-                    {
-                        isFavoris ? <Button title={"Supprimer des favoris"} onPress={() => this.deleteFavoris()}/> :
-                            <Button title={"Ajouter aux favoris"} onPress={() => this.addFavoris()}/>
-                    }
-
-
-                    {/*Bouton Link vers la réservation */}
-                    <Button title={"Réservation"} onPress={() => this.goToLink()}/>
-
-                </View>
-
-            </ScrollView>
-        );
-    }
-
-
+          {/*Bouton Link vers la réservation */}
+          <Button title={"Réservation"} onPress={() => this.goToLink()} />
+        </View>
+      </ScrollView>
+    );
+  }
 }
 
 const styles = StyleSheet.create({
-
-    container: {
-        flex: 1,
-        backgroundColor: "#FFF"
-    },
-    headerImage: {
-        height: 300
-    },
-    body: {
-
-    }
+  container: {
+    flex: 1,
+    backgroundColor: "#FFF",
+  },
+  headerImage: {
+    height: 300,
+  },
+  body: {},
 });
 
-const mapStateToProps = state => {
-    return {
-        favoris: state.favoris
-    }
+const mapStateToProps = (state) => {
+  return {
+    favoris: state.favoris,
+  };
 };
 
-const mapDispatchToProps = dispatch => {
-    return {
-        updateFavoris: favoris => {dispatch(updateFavoris(favoris))},
-    }
+const mapDispatchToProps = (dispatch) => {
+  return {
+    updateFavoris: (favoris) => {
+      dispatch(updateFavoris(favoris));
+    },
+  };
 };
-
-
 
 export default connect(mapStateToProps, mapDispatchToProps)(Details);
