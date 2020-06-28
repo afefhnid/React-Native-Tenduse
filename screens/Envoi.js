@@ -46,7 +46,6 @@ class Envoi extends Component {
   details() {
     let { navigation, data } = this.props;
     navigation.navigate("Home");
-    
   }
   render() {
     return (
@@ -94,7 +93,7 @@ class Envoi extends Component {
               style={styles.inputText}
               placeholder="Taper votre code"
             ></TextInput>
-            <Scan />
+            <Scan style={{ backgroundColor: "#fdc04e" }} />
             <TouchableOpacity
               style={styles.saveButton}
               onPress={() => {
@@ -145,6 +144,7 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     padding: 15,
     margin: 5,
+    backgroundColor: "#fdc04e",
   },
   saveButtonText: {
     color: "#60CD60",

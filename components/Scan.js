@@ -113,13 +113,15 @@ export class Scan extends Component {
         style={{
           flex: 1,
           paddingTop: 15,
-          backgroundColor: "#fff",
+
+          backgroundColor: "#fdc04e",
         }}
       >
         <TouchableOpacity
           onPress={() => {
             this.scan();
           }}
+          style={{ padding: 30 }}
         >
           <Image
             source={require("../assets/scan.jpg")}
