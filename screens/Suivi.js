@@ -42,12 +42,11 @@ class Suivi extends Component {
   details() {
     let { navigation, data } = this.props;
     navigation.navigate("Home");
-    
   }
 
   render() {
     return (
-      <View >
+      <View>
         <TouchableOpacity
           onPress={() => this.details()}
           style={{
@@ -86,119 +85,133 @@ class Suivi extends Component {
         <View style={styles.bodyEnvoi}>
           <Text style={styles.suivi}>Suivi</Text>
 
-          <View style={{    flexDirection: "row",justifyContent: "space-around"}}>
-          <View>
-          <Image
-              source={require("../assets/i.png")}
-              style={{
-                width: 35,
-                height: 35,
-                margin: "auto",
-                display: this.state.scanHidde,
-              }}
-            />
-            <View
-            style={{
-            borderBottomColor: 'black',
-        borderBottomWidth: 1,
-    transform: [{ rotate: '-90deg'}]}}
-/></View>
-             <View>
-            <Text style={styles.envoi}>Preparation</Text>
-            <Image
-              source={require("../assets/prp.png")}
-              style={{
-                width: 177,
-                height: 133,
-                margin: "auto",
-                display: this.state.scanHidde,
-              }}
-            />
+          <View
+            style={{ flexDirection: "row", justifyContent: "space-around" }}
+          >
+            <View>
+              <Image
+                source={require("../assets/i.png")}
+                style={{
+                  width: 35,
+                  height: 35,
+                  margin: "auto",
+                  display: this.state.scanHidde,
+                }}
+              />
+              <View
+                style={{
+                  borderBottomColor: "black",
+                  borderBottomWidth: 1,
+                  transform: [{ rotate: "-90deg" }],
+                }}
+              />
+            </View>
+            <View>
+              <Text style={styles.envoi}>Preparation</Text>
+              <Image
+                source={require("../assets/prp.png")}
+                style={{
+                  width: 177,
+                  height: 133,
+                  margin: "auto",
+                  display: this.state.scanHidde,
+                }}
+              />
             </View>
           </View>
-          <View style={{    flexDirection: "row",justifyContent: "space-around"}}>
-          <View>
-          <Image
-              source={require("../assets/i.png")}
-              style={{
-                width: 35,
-                height: 35,
-                margin: "auto",
-                display: this.state.scanHidde,
-              }}
-            />
-                        <View
-            style={{
-            borderBottomColor: 'black',
-        borderBottomWidth: 1,
-    transform: [{ rotate: '-90deg'}]}}
-/></View>
-             <View>
-            <Text style={styles.envoi}>Expedition</Text>
-            <Image
-              source={require("../assets/exp.png")}
-              style={{
-                width: 177,
-                height: 133,
-                margin: "auto",
-                display: this.state.scanHidde,
-              }}
-            />
+          <View
+            style={{ flexDirection: "row", justifyContent: "space-around" }}
+          >
+            <View>
+              <Image
+                source={require("../assets/i.png")}
+                style={{
+                  width: 35,
+                  height: 35,
+                  margin: "auto",
+                  display: this.state.scanHidde,
+                }}
+              />
+              <View
+                style={{
+                  borderBottomColor: "black",
+                  borderBottomWidth: 1,
+                  transform: [{ rotate: "-90deg" }],
+                }}
+              />
+            </View>
+            <View>
+              <Text style={styles.envoi}>Expedition</Text>
+              <Image
+                source={require("../assets/exp.png")}
+                style={{
+                  width: 177,
+                  height: 133,
+                  margin: "auto",
+                  display: this.state.scanHidde,
+                }}
+              />
             </View>
           </View>
-          <View style={{    flexDirection: "row",justifyContent: "space-around"}}>
-          <View>
-          <Image
-              source={require("../assets/i.png")}
-              style={{
-                width: 35,
-                height: 35,
-                margin: "auto",
-                display: this.state.scanHidde,
-              }}
-            />
-                        <View
-            style={{
-            borderBottomColor: 'black',
-        borderBottomWidth: 1,
-    transform: [{ rotate: '-90deg'}]}}
-/></View>
-             <View>
-            <Text style={styles.envoi}>Livraison</Text>
-            <Image
-              source={require("../assets/liv1.png")}
-              style={{
-                width: 177,
-                height: 133,
-                margin: "auto",
-                display: this.state.scanHidde,
-              }}
-            />
+          <View
+            style={{ flexDirection: "row", justifyContent: "space-around" }}
+          >
+            <View>
+              <Image
+                source={require("../assets/i.png")}
+                style={{
+                  width: 35,
+                  height: 35,
+                  margin: "auto",
+                  display: this.state.scanHidde,
+                }}
+              />
+              <View
+                style={{
+                  borderBottomColor: "black",
+                  borderBottomWidth: 1,
+                  transform: [{ rotate: "-90deg" }],
+                }}
+              />
+            </View>
+            <View>
+              <Text style={styles.envoi}>Livraison</Text>
+              <Image
+                source={require("../assets/liv1.png")}
+                style={{
+                  width: 177,
+                  height: 133,
+                  margin: "auto",
+                  display: this.state.scanHidde,
+                }}
+              />
             </View>
           </View>
-          <View style={{    flexDirection: "row",justifyContent: "space-around"}}>
-          <View>
-          <Image
-              source={require("../assets/i.png")}
-              style={{
-                width: 35,
-                height: 35,
-                margin: "auto",
-                display: this.state.scanHidde,
-              }}
-            />
-</View>
-             <View>
-            <Text style={styles.envoi}>Colis livre </Text>
-            <Image
-              source={require("../assets/liv.png")}
-              style={{
-                width: 177,
-                height: 133,
-                margin: "auto",
-                display: this.state.scanHidde,
-              }}
-            />
+          <View
+            style={{ flexDirection: "row", justifyContent: "space-around" }}
+          >
+            <View>
+              <Image
+                source={require("../assets/i.png")}
+                style={{
+                  width: 35,
+                  height: 35,
+                  margin: "auto",
+                  display: this.state.scanHidde,
+                }}
+              />
+            </View>
+            <View>
+              <Text style={styles.envoi}>Colis livre </Text>
+              <Image
+                source={require("../assets/liv.png")}
+                style={{
+                  width: 177,
+                  height: 133,
+                  margin: "auto",
+                  display: this.state.scanHidde,
+                }}
+              />
             </View>
           </View>
         </View>
@@ -218,14 +231,14 @@ const styles = StyleSheet.create({
     height: 1400,
   },
   envoi: {
-    fontFamily: "Roboto",
+    //fontFamily: "Roboto",
     fontStyle: "normal",
     fontWeight: "normal",
     fontSize: 20,
     lineHeight: 18,
     display: "flex",
     //alignItems: "center",
-    padding : 20
+    padding: 20,
   },
   inputText: {
     margin: 15,
@@ -247,18 +260,17 @@ const styles = StyleSheet.create({
     fontSize: 20,
     textAlign: "center",
   },
-  suivi:{
+  suivi: {
+    //textAlign: "center",
+    //marginTop: 0,
+    fontWeight: "bold",
+    color: "black",
 
-        //textAlign: "center",
-        //marginTop: 0,
-        fontWeight: "bold",
-        color: "black",
-
-        fontStyle: "normal",
-        fontWeight: "normal",
-        fontSize: 34,
-        padding : 20
-  }
+    fontStyle: "normal",
+    fontWeight: "normal",
+    fontSize: 34,
+    padding: 20,
+  },
 });
 
 export default Suivi;

@@ -92,10 +92,10 @@ export class Scan extends Component {
       },
     });
     this.setState({ scan: "none" });
-    this.setState({ scanHidde: "block" });
+    this.setState({ scanHidde: "flex" });
   }
   scan() {
-    this.setState({ scan: "block" });
+    this.setState({ scan: "flex" });
     console.log(this.state.scan);
     this.setState({ scanHidde: "none" });
   }
