@@ -43,7 +43,11 @@ class Envoi extends Component {
     let { navigation, data } = this.props;
     navigation.navigate("Suivi");
   }
-
+  details() {
+    let { navigation, data } = this.props;
+    navigation.navigate("Home");
+    
+  }
   render() {
     return (
       <View>

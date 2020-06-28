@@ -3,9 +3,13 @@ import { View, Text, StyleSheet, Image, TouchableOpacity } from "react-native";
 import { ImageBackground } from "react-native";
 import Icon from "react-native-vector-icons/FontAwesome";
 class Acceuil extends Component {
-  details() {
+  envoi() {
     let { navigation, data } = this.props;
     navigation.navigate("Envoi");
+  }
+  suivi() {
+    let { navigation, data } = this.props;
+    navigation.navigate("Suivi");
   }
   render() {
     return (
@@ -43,7 +47,7 @@ class Acceuil extends Component {
             “Embellissez-vous! Embellissez la planète !”
           </Text>
         </View>
-        <TouchableOpacity onPress={() => this.details()}>
+        <TouchableOpacity onPress={() => this.envoi()}>
           <View
             style={{
               position: "absolute",
@@ -70,7 +74,7 @@ class Acceuil extends Component {
             </Text>
           </View>
         </TouchableOpacity>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => this.suivi()}>
           <View
             style={{
               position: "absolute",

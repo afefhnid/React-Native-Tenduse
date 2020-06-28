@@ -49,7 +49,7 @@ class Home extends Component{
                     horizontal={true}
                     showsHorizontalScrollIndicator={false}
                     backgroundColor={"#FFF"}
-                    keyExtractor={item => item.id}
+                    keyExtractor={( item, index ) =>{ item.id }} 
                     renderItem={({item}) => <EventBox navigation={navigation} data={item.fields} horizontal={true}/>} />
 
                 <Title title={"A venir"}/>
