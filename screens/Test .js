@@ -13,7 +13,7 @@ import {
 import * as Permissions from "expo-permissions";
 import { BarCodeScanner } from "expo-barcode-scanner";
 import { Camera } from "expo-camera";
-export class Scan extends Component {
+class Test extends Component {
   constructor(props) {
     super(props);
 
@@ -156,3 +156,4 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
 });
+export default Test;

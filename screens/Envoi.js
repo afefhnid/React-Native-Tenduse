@@ -8,11 +8,13 @@ import {
   Button,
   Form,
   Image,
+  ScrollView,
 } from "react-native";
 import Icon from "react-native-vector-icons/FontAwesome";
 import { Constants, BarCodeScanner } from "expo";
 import * as Permissions from "expo-permissions";
 import { Scan } from "../components/Scan";
+
 class Envoi extends Component {
   state = {
     hasCameraPermission: null,
@@ -41,7 +43,7 @@ class Envoi extends Component {
 
   send() {
     let { navigation, data } = this.props;
-    navigation.navigate("Suivi");
+    navigation.navigate("Test");
   }
   details() {
     let { navigation, data } = this.props;

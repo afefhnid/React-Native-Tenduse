@@ -8,6 +8,7 @@ import {
   Button,
   Form,
   Image,
+  ScrollView,
 } from "react-native";
 import Icon from "react-native-vector-icons/FontAwesome";
 import { Constants, BarCodeScanner } from "expo";
@@ -46,7 +47,7 @@ class Suivi extends Component {
 
   render() {
     return (
-      <View>
+      <ScrollView>
         <TouchableOpacity
           onPress={() => this.details()}
           style={{
@@ -215,7 +216,7 @@ class Suivi extends Component {
             </View>
           </View>
         </View>
-      </View>
+      </ScrollView>
     );
   }
 }
