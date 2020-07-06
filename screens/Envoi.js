@@ -5,21 +5,20 @@ import {
   TouchableOpacity,
   StyleSheet,
   TextInput,
-  Button,
-  Form,
-  Image,
-  ScrollView,
+  Alert,
 } from "react-native";
 import Icon from "react-native-vector-icons/FontAwesome";
 import { Constants, BarCodeScanner } from "expo";
 import * as Permissions from "expo-permissions";
 import { Scan } from "../components/Scan";
-
+import EventsService from "../services/events.service";
 class Envoi extends Component {
   state = {
     hasCameraPermission: null,
     lastScannedUrl: null,
     scan: "none",
+    colisCode: "",
+    validate: "none",
   };
 
   componentDidMount() {
@@ -33,58 +32,46 @@ class Envoi extends Component {
     });
   };
 
-  _handleBarCodeRead = (result) => {
-    if (result.data !== this.state.lastScannedUrl) {
-      LayoutAnimation.spring();
-      this.setState({ lastScannedUrl: result.data });
-    }
-    this.setState({ scan: "none" });
-  };
-
-  send() {
-    let { navigation, data } = this.props;
-    navigation.navigate("Test");
+  handleChange(e) {
+    this.setState({ colisCode: e.target.value });
+    console.log("eeeee", this.state.colisCode);
   }
   details() {
     let { navigation, data } = this.props;
     navigation.navigate("Home");
   }
+  async onSumbite(event) {
+    //event.preventDefault();
+
+    let body = {
+      idAssociation: "5f00dfc122dc7e41406b6926",
+      idUser: "5f00e0a422dc7e41406b6927",
+      colisCode: this.state.colisCode,
+    };
+
+    let response = await EventsService.colis(body);
+    console.log(response);
+
+    setTimeout(() => {
+      this.setState({ validate: "block" });
+    }, 10);
+    this.setState({ validate: "none" });
+    let { navigation, data } = this.props;
+    navigation.navigate("Acceuil");
+  }
   render() {
     return (
       <View>
+        <Text style={{ display: this.state.validate }}>Yesssssssssssss</Text>
         <TouchableOpacity
           onPress={() => this.details()}
-          style={{
-            position: "relative",
-            top: 32,
-            left: 8,
-            paddingTop: 15,
-          }}
+          style={styles.inpuitSend}
         >
           <Icon name={"chevron-left"} size={32} />
         </TouchableOpacity>
 
         <View style={{ display: "flex" }}>
-          <Text
-            style={{
-              textAlign: "center",
-              marginTop: 0,
-              fontWeight: "bold",
-              color: "black",
-              // fontFamily: "Comfortaa",
-              fontStyle: "normal",
-              fontWeight: "normal",
-              fontSize: 34,
-              //letterSpacing: "0.07em",
-              //paddingRight: 85,
-              //paddingLeft: 125,
-            }}
-          >
-            Envoi
-          </Text>
-          {/*  <View style={styles.circle}>
-            <Icon name={"user"} size={32} style={{ margin: "auto" }} />
-          </View>* */}
+          <Text style={styles.sendText}>Envoi</Text>
         </View>
 
         <View style={styles.bodyEnvoi}>
@@ -94,12 +81,13 @@ class Envoi extends Component {
               label="Identifiant"
               style={styles.inputText}
               placeholder="Taper votre code"
+              onChange={(event) => this.handleChange(event)}
             ></TextInput>
             <Scan style={{ backgroundColor: "#fdc04e" }} />
             <TouchableOpacity
               style={styles.saveButton}
               onPress={() => {
-                this.send();
+                this.onSumbite();
               }}
             >
               <Text style={styles.saveButtonText}>Envoyer</Text>
@@ -123,12 +111,9 @@ const styles = StyleSheet.create({
   },
   envoi: {
     color: "black",
-    //fontFamily: "Comfortaa",
     fontStyle: "normal",
     fontWeight: "normal",
     fontSize: 34,
-    //letterSpacing: "0.07em",
-    //paddingRight: 20,
     paddingLeft: 20,
     paddingTop: 20,
   },
@@ -152,6 +137,21 @@ const styles = StyleSheet.create({
     color: "#60CD60",
     fontSize: 20,
     textAlign: "center",
+  },
+  sendText: {
+    textAlign: "center",
+    marginTop: 0,
+    fontWeight: "bold",
+    color: "black",
+    fontStyle: "normal",
+    fontWeight: "normal",
+    fontSize: 34,
+  },
+  inpuitSend: {
+    position: "relative",
+    top: 32,
+    left: 8,
+    paddingTop: 15,
   },
 });
 

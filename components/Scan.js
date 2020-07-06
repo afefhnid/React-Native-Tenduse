@@ -115,7 +115,7 @@ export class Scan extends Component {
           flex: 1,
           paddingTop: 15,
 
-          backgroundColor: "#fff",
+          backgroundColor: "#FDC04E",
         }}
       >
         <TouchableOpacity

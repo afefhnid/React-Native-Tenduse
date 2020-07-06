@@ -28,6 +28,7 @@ router.put("/association/:id", AssociationController.updateAssociation);
 // Routes pour les colis
 
 router.post("/colis", ColisController.create);
+router.get("/colis", ColisController.getAll);
 router.get("/colis/:id", ColisController.details);
 router.delete("/colis/:id", ColisController.deleteColis);
 router.put("/colis/:id", ColisController.updateColis);

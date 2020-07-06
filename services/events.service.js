@@ -1,6 +1,6 @@
 import Helpers from "../helpers/Helpers";
 
-const baseUrl = "http://localhost:3002";
+const baseUrl = "http://localhost:3011";
 
 class EventsService {
   /**
@@ -9,10 +9,20 @@ class EventsService {
    * @param rows
    * @returns {Promise<*>}
    */
-  static async list(rows = 20) {
-    let init = { method: "GET" };
-    let call = await fetch(`${baseUrl}&rows=${rows}`, init);
+  static async colis(body) {
+    console.log("rrrrrrr", JSON.stringify(body));
+    let init = {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(body),
+    };
+
+    let call = await fetch(`${baseUrl}/colis`, init);
     let response = await call.json();
+    console.log(response);
     return response.records;
   }
   static async helo() {
