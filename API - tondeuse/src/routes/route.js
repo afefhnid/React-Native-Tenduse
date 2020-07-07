@@ -1,4 +1,4 @@
-import {Router} from 'express';
+import { Router } from "express";
 import UserController from "../controller/userController";
 import PousseeController from "../controller/pousseeController";
 import ConseilController from "../controller/conseilController";
@@ -7,24 +7,23 @@ import AssociationController from "../controller/associationController";
 
 const router = Router();
 
-router.get("/helloWorld", function(request, response)
-{
-	response.send("Hello World");
+router.get("/helloWorld", function (request, response) {
+  response.send("Hello World");
 });
 
 // Routes pour les utilisateurs
-router.get('/users', UserController.getAll);
-router.post('/user', UserController.create);
-router.get('/user/:id', UserController.details);
-router.delete('/user/:id', UserController.deleteUser);
-router.put('/user/link/:id', UserController.linkTondeuse);
-router.put('/user/:id', UserController.updateUser);
+router.get("/users", UserController.getAll);
+router.post("/user", UserController.create);
+router.get("/user/:id", UserController.details);
+router.delete("/user/:id", UserController.deleteUser);
+router.put("/user/link/:id", UserController.linkTondeuse);
+router.put("/user/:id", UserController.updateUser);
 
 // Routes pour les associations
-router.post('/association', AssociationController.create);
-router.get('/association/:id', AssociationController.details);
-router.delete('/association/:id', AssociationController.deleteAssociation);
-router.put('/association/:id', AssociationController.updateAssociation);
+router.post("/association", AssociationController.create);
+router.get("/association/:id", AssociationController.details);
+router.delete("/association/:id", AssociationController.deleteAssociation);
+router.put("/association/:id", AssociationController.updateAssociation);
 
 // Routes pour les colis
 router.post('/colis', ColisController.create);

@@ -9,21 +9,32 @@ import rootReducer from "./helpers/rootReducer";
 import Splash from "./screens/Splash";
 import Home from "./screens/Home";
 import Details from "./screens/Details";
+import Envoi from "./screens/Envoi";
+import Suivi from "./screens/Suivi";
 import Acceuil from "./screens/Acceuil";
 import Profil from "./screens/Profil";
 import Search from "./screens/Search";
+import Test from "./screens/Test ";
 const store = createStore(rootReducer);
 
 const BottomNavigator = createBottomTabNavigator(
   {
-    Home: {
+    Acceuil: {
+      screen: Acceuil,
+      navigationOptions: () => ({
+        tabBarIcon: ({ tintColor }) => (
+          <Icon name={"home"} color={tintColor} size={24} />
+        ),
+      }),
+    },
+    /* Home: {
       screen: Home,
       navigationOptions: () => ({
         tabBarIcon: ({ tintColor }) => (
           <Icon name={"list"} color={tintColor} size={24} />
         ),
       }),
-    },
+    },*/
     Search: {
       screen: Search,
       navigationOptions: () => ({
@@ -37,14 +48,6 @@ const BottomNavigator = createBottomTabNavigator(
       navigationOptions: () => ({
         tabBarIcon: ({ tintColor }) => (
           <Icon name={"user"} color={tintColor} size={24} />
-        ),
-      }),
-    },
-    Acceuil: {
-      screen: Acceuil,
-      navigationOptions: () => ({
-        tabBarIcon: ({ tintColor }) => (
-          <Icon name={"home"} color={tintColor} size={24} />
         ),
       }),
     },
@@ -67,6 +70,9 @@ const AppNavigator = createStackNavigator(
     },
     Acceuil: { screen: Acceuil, navigationOptions: { headerShown: false } },
     Details: { screen: Details, navigationOptions: { headerShown: false } },
+    Envoi: { screen: Envoi, navigationOptions: { headerShown: false } },
+    Suivi: { screen: Suivi, navigationOptions: { headerShown: false } },
+    Test: { screen: Test, navigationOptions: { headerShown: false } },
   },
   {
     initialRouteName: "Splash",
