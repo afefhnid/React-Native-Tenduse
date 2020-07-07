@@ -14,7 +14,7 @@ import Suivi from "./screens/Suivi";
 import Acceuil from "./screens/Acceuil";
 import Profil from "./screens/Profil";
 import Search from "./screens/Search";
-import Test from "./screens/Test ";
+import SuiviDetails from "./screens/SuiviDetails";
 const store = createStore(rootReducer);
 
 const BottomNavigator = createBottomTabNavigator(
@@ -72,7 +72,10 @@ const AppNavigator = createStackNavigator(
     Details: { screen: Details, navigationOptions: { headerShown: false } },
     Envoi: { screen: Envoi, navigationOptions: { headerShown: false } },
     Suivi: { screen: Suivi, navigationOptions: { headerShown: false } },
-    Test: { screen: Test, navigationOptions: { headerShown: false } },
+    SuiviDetails: {
+      screen: SuiviDetails,
+      navigationOptions: { headerShown: false },
+    },
   },
   {
     initialRouteName: "Splash",
