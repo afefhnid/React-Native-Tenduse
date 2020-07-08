@@ -36,7 +36,7 @@ class Acceuil extends Component {
               letterSpacing: "0.07em",
             }}
           >
-            Acceuil
+            Accueil
           </Text>
           <Text
             style={{
@@ -101,10 +101,11 @@ class Acceuil extends Component {
             </Text>
           </View>
         </TouchableOpacity>
+        <TouchableOpacity onPress={() => this.suivi()}>
         <View
           style={{
             position: "absolute",
-            top: 330,
+            top: 270,
             left: 200,
             height: 150,
             width: 150,
@@ -126,10 +127,14 @@ class Acceuil extends Component {
             Suivi de la Poussée
           </Text>
         </View>
+        </TouchableOpacity>
+
+        <TouchableOpacity onPress={() => this.suivi()}>
         <View
+        
           style={{
             position: "absolute",
-            top: 330,
+            top: 270,
             left: 25,
             height: 150,
             width: 150,
@@ -148,9 +153,10 @@ class Acceuil extends Component {
               fontWeight: "bold",
             }}
           >
-            Conseuil
+            Conseils
           </Text>
         </View>
+        </TouchableOpacity>
         <View
           style={{
             position: "absolute",

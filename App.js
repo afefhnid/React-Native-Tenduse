@@ -4,16 +4,20 @@ import { createAppContainer } from "react-navigation";
 import { createBottomTabNavigator } from "react-navigation-tabs";
 import { createStackNavigator } from "react-navigation-stack";
 import { Provider } from "react-redux";
-import { createStore, applyMiddleware } from "redux";
+import { createStore } from "redux";
 import rootReducer from "./helpers/rootReducer";
 import Splash from "./screens/Splash";
 import Home from "./screens/Home";
-//import Details from "./screens/Details";
-import Envoi from "./screens/Envoi";
-import Suivi from "./screens/Suivi";
+import Forgot from "./screens/Forgot";
+import Details from "./screens/Details";
 import Acceuil from "./screens/Acceuil";
 import Profil from "./screens/Profil";
+import Register from "./screens/Register";
+import SignUp from "./screens/SignUp";
+import Login from "./screens/Login";
 import Search from "./screens/Search";
+import Envoi from "./screens/Envoi";
+import Suivi from "./screens/Suivi";
 import SuiviDetails from "./screens/SuiviDetails";
 import { composeWithDevTools } from "redux-devtools-extension";
 const store = createStore(
@@ -22,7 +26,6 @@ const store = createStore(
 
   // other store enhancers if any
 );
-
 const BottomNavigator = createBottomTabNavigator(
   {
     Acceuil: {
@@ -33,14 +36,6 @@ const BottomNavigator = createBottomTabNavigator(
         ),
       }),
     },
-    /* Home: {
-      screen: Home,
-      navigationOptions: () => ({
-        tabBarIcon: ({ tintColor }) => (
-          <Icon name={"list"} color={tintColor} size={24} />
-        ),
-      }),
-    },*/
     Search: {
       screen: Search,
       navigationOptions: () => ({
@@ -57,6 +52,7 @@ const BottomNavigator = createBottomTabNavigator(
         ),
       }),
     },
+    
   },
   {
     tabBarOptions: {
@@ -70,12 +66,16 @@ const BottomNavigator = createBottomTabNavigator(
 const AppNavigator = createStackNavigator(
   {
     Splash: { screen: Splash, navigationOptions: { headerShown: false } },
+    Login: { screen: Login, navigationOptions: { headerShown: false } },
+    Register: { screen: Register, navigationOptions: { headerShown: false } },
+    SignUp: { screen: SignUp, navigationOptions: { headerShown: false } },
+    Forgot: { screen: Forgot, navigationOptions: { headerShown: false } },
     Home: {
       screen: BottomNavigator,
       navigationOptions: { headerShown: false },
     },
     Acceuil: { screen: Acceuil, navigationOptions: { headerShown: false } },
-    // Details: { screen: Details, navigationOptions: { headerShown: false } },
+    Details: { screen: Details, navigationOptions: { headerShown: false } },
     Envoi: { screen: Envoi, navigationOptions: { headerShown: false } },
     Suivi: { screen: Suivi, navigationOptions: { headerShown: false } },
     SuiviDetails: {

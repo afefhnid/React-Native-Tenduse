@@ -7,7 +7,6 @@ import {
   StyleSheet,
   TouchableOpacity,
   Image,
-  ScrollView,
 } from "react-native";
 
 import * as Permissions from "expo-permissions";
@@ -16,7 +15,6 @@ import { Camera } from "expo-camera";
 export class Scan extends Component {
   constructor(props) {
     super(props);
-
     this.onBarCodeRead = this.onBarCodeRead.bind(this);
     this.renderMessage = this.renderMessage.bind(this);
     this.scannedCode = null;
@@ -93,10 +91,10 @@ export class Scan extends Component {
       },
     });
     this.setState({ scan: "none" });
-    this.setState({ scanHidde: "block" });
+    this.setState({ scanHidde: "flex" });
   }
   scan() {
-    this.setState({ scan: "block" });
+    this.setState({ scan: "flex" });
     console.log(this.state.scan);
     this.setState({ scanHidde: "none" });
   }
@@ -115,7 +113,7 @@ export class Scan extends Component {
           flex: 1,
           paddingTop: 15,
 
-          backgroundColor: "#FDC04E",
+          backgroundColor: "#fdc04e",
         }}
       >
         <TouchableOpacity
