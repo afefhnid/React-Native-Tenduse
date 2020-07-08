@@ -4,16 +4,12 @@ import {
   Text,
   TouchableOpacity,
   StyleSheet,
-  TextInput,
-  Button,
-  Form,
   Image,
   ScrollView,
 } from "react-native";
 import Icon from "react-native-vector-icons/FontAwesome";
-import { Constants, BarCodeScanner } from "expo";
 import * as Permissions from "expo-permissions";
-import { Scan } from "../components/Scan";
+
 class Suivi extends Component {
   state = {
     hasCameraPermission: null,
@@ -42,45 +38,21 @@ class Suivi extends Component {
 
   details() {
     let { navigation, data } = this.props;
+    navigation.navigate("SuiviDetails");
+  }
+  Home() {
+    let { navigation, data } = this.props;
     navigation.navigate("Home");
   }
-
   render() {
     return (
       <ScrollView>
-        <TouchableOpacity
-          onPress={() => this.details()}
-          style={{
-            position: "relative",
-            top: 32,
-            left: 8,
-            paddingTop: 15,
-          }}
-        >
+        <TouchableOpacity onPress={() => this.Home()} style={styles.header}>
           <Icon name={"chevron-left"} size={32} />
         </TouchableOpacity>
 
         <View style={{ display: "flex" }}>
-          <Text
-            style={{
-              textAlign: "center",
-              marginTop: 0,
-              fontWeight: "bold",
-              color: "black",
-              // fontFamily: "Comfortaa",
-              fontStyle: "normal",
-              fontWeight: "normal",
-              fontSize: 34,
-              //letterSpacing: "0.07em",
-              //paddingRight: 85,
-              //paddingLeft: 125,
-            }}
-          >
-            Send
-          </Text>
-          {/*  <View style={styles.circle}>
-            <Icon name={"user"} size={32} style={{ margin: "auto" }} />
-          </View>* */}
+          <Text style={styles.title}>Send</Text>
         </View>
 
         <View style={styles.bodyEnvoi}>
@@ -92,12 +64,7 @@ class Suivi extends Component {
             <View>
               <Image
                 source={require("../assets/i.png")}
-                style={{
-                  width: 35,
-                  height: 35,
-                  margin: "auto",
-                  display: this.state.scanHidde,
-                }}
+                style={styles.imageI}
               />
               <View
                 style={{
@@ -107,16 +74,12 @@ class Suivi extends Component {
                 }}
               />
             </View>
+
             <View>
               <Text style={styles.envoi}>Preparation</Text>
               <Image
                 source={require("../assets/prp.png")}
-                style={{
-                  width: 177,
-                  height: 133,
-                  margin: "auto",
-                  display: this.state.scanHidde,
-                }}
+                style={styles.Image}
               />
             </View>
           </View>
@@ -126,12 +89,7 @@ class Suivi extends Component {
             <View>
               <Image
                 source={require("../assets/i.png")}
-                style={{
-                  width: 35,
-                  height: 35,
-                  margin: "auto",
-                  display: this.state.scanHidde,
-                }}
+                style={styles.imageI}
               />
               <View
                 style={{
@@ -141,31 +99,27 @@ class Suivi extends Component {
                 }}
               />
             </View>
-            <View>
-              <Text style={styles.envoi}>Expedition</Text>
-              <Image
-                source={require("../assets/exp.png")}
-                style={{
-                  width: 177,
-                  height: 133,
-                  margin: "auto",
-                  display: this.state.scanHidde,
-                }}
-              />
-            </View>
+            <TouchableOpacity
+              onPress={() => this.details()}
+              style={styles.inpuitSend}
+            >
+              <View>
+                <Text style={styles.envoi}>Expedition</Text>
+                <Image
+                  source={require("../assets/exp.png")}
+                  style={styles.Image}
+                />
+              </View>
+            </TouchableOpacity>
           </View>
+
           <View
             style={{ flexDirection: "row", justifyContent: "space-around" }}
           >
             <View>
               <Image
-                source={require("../assets/i.png")}
-                style={{
-                  width: 35,
-                  height: 35,
-                  margin: "auto",
-                  display: this.state.scanHidde,
-                }}
+                source={require("../assets/i2.png")}
+                style={styles.imageI}
               />
               <View
                 style={{
@@ -179,12 +133,7 @@ class Suivi extends Component {
               <Text style={styles.envoi}>Livraison</Text>
               <Image
                 source={require("../assets/liv1.png")}
-                style={{
-                  width: 177,
-                  height: 133,
-                  margin: "auto",
-                  display: this.state.scanHidde,
-                }}
+                style={styles.Image}
               />
             </View>
           </View>
@@ -193,25 +142,15 @@ class Suivi extends Component {
           >
             <View>
               <Image
-                source={require("../assets/i.png")}
-                style={{
-                  width: 35,
-                  height: 35,
-                  margin: "auto",
-                  display: this.state.scanHidde,
-                }}
+                source={require("../assets/i2.png")}
+                style={styles.imageI}
               />
             </View>
             <View>
               <Text style={styles.envoi}>Colis livre </Text>
               <Image
                 source={require("../assets/liv.png")}
-                style={{
-                  width: 177,
-                  height: 133,
-                  margin: "auto",
-                  display: this.state.scanHidde,
-                }}
+                style={styles.Image}
               />
             </View>
           </View>
@@ -232,13 +171,12 @@ const styles = StyleSheet.create({
     height: 1400,
   },
   envoi: {
-    //fontFamily: "Roboto",
     fontStyle: "normal",
     fontWeight: "normal",
     fontSize: 20,
     lineHeight: 18,
     display: "flex",
-    //alignItems: "center",
+
     padding: 20,
   },
   inputText: {
@@ -262,8 +200,6 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
   suivi: {
-    //textAlign: "center",
-    //marginTop: 0,
     fontWeight: "bold",
     color: "black",
 
@@ -271,6 +207,31 @@ const styles = StyleSheet.create({
     fontWeight: "normal",
     fontSize: 34,
     padding: 20,
+  },
+  header: {
+    position: "relative",
+    top: 32,
+    left: 8,
+    paddingTop: 15,
+  },
+  title: {
+    textAlign: "center",
+    marginTop: 0,
+    fontWeight: "bold",
+    color: "black",
+    fontStyle: "normal",
+    fontWeight: "normal",
+    fontSize: 34,
+  },
+  imageI: {
+    width: 35,
+    height: 35,
+    margin: "auto",
+  },
+  Image: {
+    width: 177,
+    height: 133,
+    margin: "auto",
   },
 });
 

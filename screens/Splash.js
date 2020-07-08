@@ -3,9 +3,16 @@ import {
     StyleSheet,
     View,
     Animated,
+    Dimensions,
+    Image,
+    FlatList,
+    Modal,
+    ScrollView
 } from 'react-native';
-import logo from './../assets/logo.png';
-
+import logo from '../assets/logo.png';
+import { Button, Block, Text } from "../components";
+import { theme } from "../constants";
+import { ImageBackground } from "react-native";
 class Splash extends Component{
 
     constructor(props) {
@@ -15,30 +22,46 @@ class Splash extends Component{
         }
     }
 
-    fadeInAnimation = () => {
-        let {fadeIn} = this.state;
-        Animated.timing(fadeIn, {
-            toValue: 1,
-            duration: 2000,
-        }).start(() => this.props.navigation.navigate('Home'));
-    };
-
-    componentDidMount() {
-        this.fadeInAnimation();
-    }
+    
 
 
     render() {
-
+        const { navigation } = this.props;
         let {fadeIn} = this.state;
 
         return (
-            <View style={styles.container}>
-                <Animated.Image
-                    style={{opacity: fadeIn}}
-                    source={logo}
-                />
-            </View>
+        <ImageBackground
+        source={require("../assets/spa.png")}
+        style={{ flex: 1, width: null, height: null }}
+      >
+            <Block>
+                <Block center bottom flex={0.4}>
+                <Text h1 center bold>
+                    
+                    <Text h1 primary>
+                    {" "}
+                    La tondeuse dépolluante
+                    </Text>
+                </Text>
+                <Text h3 gray2 style={{ marginTop: theme.sizes.padding / 2 }}>
+                Embellissez-vous! Embellissez la planète !
+
+                </Text>
+                </Block>
+                <Block middle flex={0.5} margin={[0, theme.sizes.padding * 2]}>
+                <Button gradient onPress={() => navigation.navigate("Login")}>
+                    <Text center semibold white>
+                    Login
+                    </Text>
+                </Button>
+                <Button shadow onPress={() => navigation.navigate("SignUp")}>
+                    <Text center semibold white>
+                    Register
+                    </Text>
+                </Button>
+                </Block>
+            </Block>
+            </ImageBackground>
         )
     }
 
