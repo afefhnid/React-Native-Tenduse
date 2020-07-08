@@ -10,7 +10,7 @@
   "dependencies": {
     "@react-native-community/cli": "^4.10.1",
     "@react-native-community/masked-view": "0.1.6",
-    "expo": "~37.0.3",
+    "expo": "^38.0.8",
     "expo-barcode-scanner": "~8.1.0",
     "expo-camera": "~8.2.0",
     "expo-permissions": "^8.1.0",
