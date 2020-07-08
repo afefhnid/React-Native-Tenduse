@@ -4,18 +4,24 @@ import { createAppContainer } from "react-navigation";
 import { createBottomTabNavigator } from "react-navigation-tabs";
 import { createStackNavigator } from "react-navigation-stack";
 import { Provider } from "react-redux";
-import { createStore } from "redux";
+import { createStore, applyMiddleware } from "redux";
 import rootReducer from "./helpers/rootReducer";
 import Splash from "./screens/Splash";
 import Home from "./screens/Home";
-import Details from "./screens/Details";
+//import Details from "./screens/Details";
 import Envoi from "./screens/Envoi";
 import Suivi from "./screens/Suivi";
 import Acceuil from "./screens/Acceuil";
 import Profil from "./screens/Profil";
 import Search from "./screens/Search";
 import SuiviDetails from "./screens/SuiviDetails";
-const store = createStore(rootReducer);
+import { composeWithDevTools } from "redux-devtools-extension";
+const store = createStore(
+  rootReducer,
+  composeWithDevTools()
+
+  // other store enhancers if any
+);
 
 const BottomNavigator = createBottomTabNavigator(
   {
@@ -69,7 +75,7 @@ const AppNavigator = createStackNavigator(
       navigationOptions: { headerShown: false },
     },
     Acceuil: { screen: Acceuil, navigationOptions: { headerShown: false } },
-    Details: { screen: Details, navigationOptions: { headerShown: false } },
+    // Details: { screen: Details, navigationOptions: { headerShown: false } },
     Envoi: { screen: Envoi, navigationOptions: { headerShown: false } },
     Suivi: { screen: Suivi, navigationOptions: { headerShown: false } },
     SuiviDetails: {

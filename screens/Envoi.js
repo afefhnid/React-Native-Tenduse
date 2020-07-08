@@ -12,14 +12,19 @@ import { Constants, BarCodeScanner } from "expo";
 import * as Permissions from "expo-permissions";
 import { Scan } from "../components/Scan";
 import EventsService from "../services/events.service";
+import { getColis } from "../actions/favoris.actions";
+import { connect } from "react-redux";
 class Envoi extends Component {
-  state = {
-    hasCameraPermission: null,
-    lastScannedUrl: null,
-    scan: "none",
-    colisCode: "",
-    validate: "none",
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      hasCameraPermission: null,
+      lastScannedUrl: null,
+      scan: "none",
+      colisCode: "",
+      validate: "none",
+    };
+  }
 
   componentDidMount() {
     this._requestCameraPermission();
@@ -42,7 +47,10 @@ class Envoi extends Component {
   }
   async onSumbite(event) {
     //event.preventDefault();
-
+    let { colis } = this.props;
+    colis.push(this.state.colisCode);
+    console.log(colis);
+    this.props.getColis(colis);
     let body = {
       idAssociation: "5f00dfc122dc7e41406b6926",
       idUser: "5f00e0a422dc7e41406b6927",
@@ -154,5 +162,16 @@ const styles = StyleSheet.create({
     paddingTop: 15,
   },
 });
-
-export default Envoi;
+const mapStateToProps = (state) => {
+  return {
+    colis: state.colis,
+  };
+};
+const mapDispatchToProps = (dispatch) => {
+  return {
+    getColis: (colis) => {
+      dispatch(getColis(colis));
+    },
+  };
+};
+export default connect(mapStateToProps, mapDispatchToProps)(Envoi);
