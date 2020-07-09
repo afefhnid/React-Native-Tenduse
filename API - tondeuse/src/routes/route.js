@@ -26,23 +26,21 @@ router.delete("/association/:id", AssociationController.deleteAssociation);
 router.put("/association/:id", AssociationController.updateAssociation);
 
 // Routes pour les colis
-
-router.post("/colis", ColisController.create);
-router.get("/colis", ColisController.getAll);
-router.get("/colis/:id", ColisController.details);
-router.delete("/colis/:id", ColisController.deleteColis);
-router.put("/colis/:id", ColisController.updateColis);
+router.post('/colis', ColisController.create);
+router.get('/colis/:id', ColisController.details);
+router.delete('/colis/:id', ColisController.deleteColis);
+router.put('/colis/:id', ColisController.updateColis);
 
 // Routes pour les conseil
-router.post("/association", ConseilController.create);
-router.get("/association/:id", ConseilController.details);
-router.delete("/association/:id", ConseilController.deleteConseil);
-router.put("/association/:id", ConseilController.updateConseil);
+router.post('/conseil', ConseilController.create);
+router.get('/conseil/:id', ConseilController.details);
+router.delete('/conseil/:id', ConseilController.deleteConseil);
+router.put('/conseil/:id', ConseilController.updateConseil);
 
 // Routes pour les poussée (des cheveux)
-router.post("/association", PousseeController.create);
-router.get("/association/:id", PousseeController.details);
-router.delete("/association/:id", PousseeController.deletePoussee);
-router.get("/association/user/:id", PousseeController.getPousseeByIdUser);
+router.post('/poussee', PousseeController.create);
+router.get('/poussee/:id', PousseeController.details);
+router.delete('/poussee/:id', PousseeController.deletePoussee);
+router.get('/poussee/user/:id', PousseeController.getPousseeByIdUser);
 
 export default router;

@@ -132,7 +132,6 @@ class Acceuil extends Component {
           </Text>
         </View>
         </TouchableOpacity>
-
         <TouchableOpacity onPress={() => this.conseils()}>
         <View
         

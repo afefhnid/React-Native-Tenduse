@@ -36,6 +36,23 @@ class EventsService {
     return call;
   }
 
+  static async getAllUsers()
+  {
+    let init = { method: "GET" };
+
+    let call = await fetch('users');
+    let response = await call.json();
+    return response.records;
+  }
+
+  static async getAllUsers()
+  {
+    let init = { method: "DELETE" };
+
+    let call = await fetch('users');
+    return await call.json();
+  }
+
   static async getEventsThisWeek(rows = 20) {
     let init = { method: "GET" };
 

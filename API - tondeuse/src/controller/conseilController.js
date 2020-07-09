@@ -36,7 +36,7 @@ class ConseilController
 				_id: id
 			}).populate('idUser');
 			
-			body = {post, 'message': 'conseil find'};
+			body = {conseil, 'message': 'conseil find'};
 		}
 		catch(error) {
 			status = 500;
