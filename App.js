@@ -20,6 +20,10 @@ import Envoi from "./screens/Envoi";
 import Suivi from "./screens/Suivi";
 import SuiviDetails from "./screens/SuiviDetails";
 import { composeWithDevTools } from "redux-devtools-extension";
+import Conseils from "./screens/Conseils";
+import Addconseil from "./screens/Addconseil";
+import ShowConseils from "./screens/ShowConseils";
+
 const store = createStore(
   rootReducer,
   composeWithDevTools()
@@ -82,6 +86,9 @@ const AppNavigator = createStackNavigator(
       screen: SuiviDetails,
       navigationOptions: { headerShown: false },
     },
+    Conseils: { screen: Conseils, navigationOptions: { headerShown: false } },
+    Addconseil: {  screen: Addconseil, navigationOptions: {  headerShown: false  } },
+    ShowConseils: {  screen: ShowConseils, navigationOptions: {  headerShown: false  } },
   },
   {
     initialRouteName: "Splash",

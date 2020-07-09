@@ -11,6 +11,10 @@ class Acceuil extends Component {
     let { navigation, data } = this.props;
     navigation.navigate("Suivi");
   }
+  conseils() {
+    let { navigation, data } = this.props;
+    navigation.navigate("Conseils");
+  }
   render() {
     return (
       <ImageBackground
@@ -128,8 +132,7 @@ class Acceuil extends Component {
           </Text>
         </View>
         </TouchableOpacity>
-
-        <TouchableOpacity onPress={() => this.suivi()}>
+        <TouchableOpacity onPress={() => this.conseils()}>
         <View
         
           style={{
