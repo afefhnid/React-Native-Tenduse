@@ -10,7 +10,7 @@ import {
 import { Button, Block, Input, Text } from "../components";
 import { theme } from "../constants";
 
-export default class Conseils extends Component {
+export default class Customize extends Component {
   state = {
     email: null,
     username: null,
@@ -36,13 +36,13 @@ export default class Conseils extends Component {
 
     if (!errors.length) {
       Alert.alert(
-        "Success!",
-        "Your account has been created",
+        "",
+        "",
         [
           {
             text: "Continue",
             onPress: () => {
-              navigation.navigate("Browse");
+              navigation.navigate("");
             }
           }
         ],
@@ -60,42 +60,66 @@ export default class Conseils extends Component {
       <KeyboardAvoidingView style={styles.signup} behavior="padding">
         <Block padding={[0, theme.sizes.base * 2]}>
           <Text h1 bold>
-            
+            Customize profil
           </Text>
           <Block middle>
             
+            <Input
+              placeholder = "Nature of hair..."
+              error={hasErrors("Nature of hair")}
+              style={[styles.input, hasErrors("title")]}
+              defaultValue={this.state.username}
+              onChangeText={text => this.setState({ username: text })}
+            />
+            <Input
+              email
+              placeholder = "Style of cut"
+              error={hasErrors("Style of cut")}
+              style={[styles.input, hasErrors("content")]}
+              defaultValue={this.state.email}
+              onChangeText={text => this.setState({ email: text })}
+            />
+
+            <Input
+              email
+              placeholder = "Nature of growth"
+              error={hasErrors("Nature of growth")}
+              style={[styles.input, hasErrors("content")]}
+              defaultValue={this.state.email}
+              onChangeText={text => this.setState({ email: text })}
+            />
+
+            <Input
+              email
+              placeholder = "other"
+              error={hasErrors("other")}
+              style={[styles.input, hasErrors("content")]}
+              defaultValue={this.state.email}
+              onChangeText={text => this.setState({ email: text })}
+            />
             
-            <Button gradient onPress={() => navigation.navigate("ShowConseils")}>
-              {loading ? (
-                <ActivityIndicator size="small" color="white" />
-              ) : (
-                <Text bold white center>
-                  Show conseils
-                </Text>
-              )}
-            </Button>
-
-            <Button  onPress={() => navigation.navigate("Addconseil")}>
-              {loading ? (
-                <ActivityIndicator size="small" color="white" />
-              ) : (
-                <Text bold white center>
-                  Add conseils
-                </Text>
-              )}
-            </Button>
-
-            <Button gradient onPress={() => navigation.navigate("Customize")}>
-              {loading ? (
-                <ActivityIndicator size="small" color="white" />
-              ) : (
-                <Text bold white center>
-                  Customize my profile
-                </Text>
-              )}
-            </Button>
-
             
+            
+            <Button gradient onPress={() => this.handleSignUp()}>
+              {loading ? (
+                <ActivityIndicator size="small" color="white" />
+              ) : (
+                <Text bold white center>
+                  Sumit
+                </Text>
+              )}
+            </Button>
+
+            <Button onPress={() => navigation.navigate("Conseils")}>
+              <Text
+                gray
+                caption
+                center
+                style={{ textDecorationLine: "underline" }}
+              >
+                Back  
+              </Text>
+            </Button>
           </Block>
         </Block>
       </KeyboardAvoidingView>
