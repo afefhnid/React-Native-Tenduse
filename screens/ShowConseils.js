@@ -9,6 +9,8 @@ import {
 } from "react-native";
 import Icon from "react-native-vector-icons/FontAwesome";
 import * as Permissions from "expo-permissions";
+import { Button, Block } from "../components";
+
 
 class ShowConseils extends Component {
  
@@ -27,6 +29,7 @@ class ShowConseils extends Component {
           <Text style={styles.title}>Conseils</Text>
         </View>
       </ScrollView>
+      
     );
   }
 }

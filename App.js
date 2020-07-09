@@ -23,6 +23,7 @@ import { composeWithDevTools } from "redux-devtools-extension";
 import Conseils from "./screens/Conseils";
 import Addconseil from "./screens/Addconseil";
 import ShowConseils from "./screens/ShowConseils";
+import Customize from "./screens/Customize";
 
 const store = createStore(
   rootReducer,
@@ -89,6 +90,7 @@ const AppNavigator = createStackNavigator(
     Conseils: { screen: Conseils, navigationOptions: { headerShown: false } },
     Addconseil: {  screen: Addconseil, navigationOptions: {  headerShown: false  } },
     ShowConseils: {  screen: ShowConseils, navigationOptions: {  headerShown: false  } },
+    Customize: {  screen: Customize, navigationOptions: {  headerShown: false  } },
   },
   {
     initialRouteName: "Splash",
