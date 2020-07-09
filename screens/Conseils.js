@@ -4,8 +4,11 @@ import {
   ActivityIndicator,
   Keyboard,
   KeyboardAvoidingView,
-  StyleSheet
+  StyleSheet,
+  TouchableOpacity,
+  View,
 } from "react-native";
+import Icon from "react-native-vector-icons/FontAwesome";
 
 import { Button, Block, Input, Text } from "../components";
 import { theme } from "../constants";
@@ -16,7 +19,7 @@ export default class Conseils extends Component {
     username: null,
     password: null,
     errors: [],
-    loading: false
+    loading: false,
   };
 
   handleSignUp() {
@@ -43,72 +46,81 @@ export default class Conseils extends Component {
             text: "Continue",
             onPress: () => {
               navigation.navigate("Browse");
-            }
-          }
+            },
+          },
         ],
         { cancelable: false }
       );
     }
   }
-
+  Home() {
+    let { navigation, data } = this.props;
+    navigation.navigate("Home");
+  }
   render() {
     const { navigation } = this.props;
     const { loading, errors } = this.state;
-    const hasErrors = key => (errors.includes(key) ? styles.hasErrors : null);
+    const hasErrors = (key) => (errors.includes(key) ? styles.hasErrors : null);
 
     return (
-      <KeyboardAvoidingView style={styles.signup} behavior="padding">
-        <Block padding={[0, theme.sizes.base * 2]}>
-          <Text h1 bold>
-            
-          </Text>
-          <Block middle>
-            
-            
-            <Button gradient onPress={() => navigation.navigate("ShowConseils")}>
-              {loading ? (
-                <ActivityIndicator size="small" color="white" />
-              ) : (
-                <Text bold white center>
-                  Show conseils
-                </Text>
-              )}
-            </Button>
+      <View>
+        <TouchableOpacity onPress={() => this.Home()} style={styles.header}>
+          <Icon name={"chevron-left"} size={32} />
+        </TouchableOpacity>
 
-            <Button  onPress={() => navigation.navigate("Addconseil")}>
-              {loading ? (
-                <ActivityIndicator size="small" color="white" />
-              ) : (
-                <Text bold white center>
-                  Add conseils
-                </Text>
-              )}
-            </Button>
-
-            <Button gradient onPress={() => navigation.navigate("Customize")}>
-              {loading ? (
-                <ActivityIndicator size="small" color="white" />
-              ) : (
-                <Text bold white center>
-                  Customize my profile
-                </Text>
-              )}
-            </Button>
-            <Button onPress={() => navigation.navigate("Acceuil")}>
-              <Text
-                gray
-                caption
-                center
-                style={{ textDecorationLine: "underline" }}
+        <View style={{ display: "flex" }}>
+          <Text style={styles.title}>Conseils</Text>
+        </View>
+        <KeyboardAvoidingView style={styles.signup} behavior="padding">
+          <Block padding={[0, theme.sizes.base * 2]}>
+            <Text h1 bold></Text>
+            <Block middle>
+              <Button
+                gradient
+                onPress={() => navigation.navigate("ShowConseils")}
               >
-                Back  
-              </Text>
-            </Button>
+                {loading ? (
+                  <ActivityIndicator size="small" color="white" />
+                ) : (
+                  <Text bold white center>
+                    Show conseils
+                  </Text>
+                )}
+              </Button>
 
-            
+              <Button onPress={() => navigation.navigate("Addconseil")}>
+                {loading ? (
+                  <ActivityIndicator size="small" color="white" />
+                ) : (
+                  <Text bold white center>
+                    Add conseils
+                  </Text>
+                )}
+              </Button>
+
+              <Button gradient onPress={() => navigation.navigate("Customize")}>
+                {loading ? (
+                  <ActivityIndicator size="small" color="white" />
+                ) : (
+                  <Text bold white center>
+                    Customize my profile
+                  </Text>
+                )}
+              </Button>
+              <Button onPress={() => navigation.navigate("Acceuil")}>
+                <Text
+                  gray
+                  caption
+                  center
+                  style={{ textDecorationLine: "underline" }}
+                >
+                  Back
+                </Text>
+              </Button>
+            </Block>
           </Block>
-        </Block>
-      </KeyboardAvoidingView>
+        </KeyboardAvoidingView>
+      </View>
     );
   }
 }
@@ -116,15 +128,30 @@ export default class Conseils extends Component {
 const styles = StyleSheet.create({
   signup: {
     flex: 1,
-    justifyContent: "center"
+    justifyContent: "center",
   },
   input: {
     borderRadius: 0,
     borderWidth: 0,
     borderBottomColor: theme.colors.gray2,
-    borderBottomWidth: StyleSheet.hairlineWidth
+    borderBottomWidth: StyleSheet.hairlineWidth,
   },
   hasErrors: {
-    borderBottomColor: theme.colors.accent
-  }
+    borderBottomColor: theme.colors.accent,
+  },
+  header: {
+    position: "relative",
+    top: 32,
+    left: 8,
+    paddingTop: 15,
+  },
+  title: {
+    textAlign: "center",
+    marginTop: 0,
+    fontWeight: "bold",
+    color: "black",
+    fontStyle: "normal",
+    fontWeight: "normal",
+    fontSize: 34,
+  },
 });
