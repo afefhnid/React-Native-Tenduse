@@ -24,6 +24,7 @@ import Conseils from "./screens/Conseils";
 import Addconseil from "./screens/Addconseil";
 import ShowConseils from "./screens/ShowConseils";
 import Customize from "./screens/Customize";
+import Communaute from "./screens/Communaute";
 
 const store = createStore(
   rootReducer,
@@ -91,6 +92,7 @@ const AppNavigator = createStackNavigator(
     Addconseil: {  screen: Addconseil, navigationOptions: {  headerShown: false  } },
     ShowConseils: {  screen: ShowConseils, navigationOptions: {  headerShown: false  } },
     Customize: {  screen: Customize, navigationOptions: {  headerShown: false  } },
+    Communaute: {  screen: Communaute, navigationOptions: {  headerShown: false  } },
   },
   {
     initialRouteName: "Splash",

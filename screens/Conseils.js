@@ -94,6 +94,16 @@ export default class Conseils extends Component {
                 </Text>
               )}
             </Button>
+            <Button onPress={() => navigation.navigate("Acceuil")}>
+              <Text
+                gray
+                caption
+                center
+                style={{ textDecorationLine: "underline" }}
+              >
+                Back  
+              </Text>
+            </Button>
 
             
           </Block>
